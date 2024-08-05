@@ -116,16 +116,54 @@
                 margin: 10px 0;
             }
         }
+        /* 关键帧动画 */
+        @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+        }
+
+        @keyframes slideInFromLeft {
+        from { transform: translateX(-100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInFromRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes scaleUp {
+        from { transform: scale(0.5); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+        }
+
+        /* 进场动画的通用设置 */
+        .animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-delay: var(--animation-delay);
+        }
+
+        /* 动画类 */
+        .fadeIn { animation-name: fadeIn; }
+        .slideInFromLeft { animation-name: slideInFromLeft; }
+        .slideInFromRight { animation-name: slideInFromRight; }
+        .scaleUp { animation-name: scaleUp; }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+        /* 调整响应式布局的动画 */
+        }       
     </style>
 </head>
 <body>
 
     <header>
-        <h1>个人博客</h1>
+        <h1>猪猪的小天地</h1>
         <nav>
             <ul>
                 <li><a href="#about">关于我</a></li>
-                <li><a href="#posts">文章列表</a></li>
+                <li><a href="#posts">广告位</a></li>
                 <li><a href="#projects">项目介绍</a></li>
                 <li><a href="#contact">联系方式</a></li>
             </ul>
@@ -135,22 +173,22 @@
     <main>
         <section id="about">
             <h2>关于我</h2>
-            <p>这里是关于我的一些详细信息，展示我的经历和专业技能。</p>
+            <p>一只小学刚毕业误打误撞碰上前端的死猪</p>
         </section>
 
         <section id="posts">
-            <h2>文章列表</h2>
-            <p>分享我的知识、见解和学习经验。</p>
+            <h2>广告位不花钱</h2>
+            <p>你行你来加我微信投稿</p>
         </section>
 
         <section id="projects">
             <h2>项目介绍</h2>
-            <p>展示我参与过的各种项目和成果。</p>
+            <p>此博客纯由本死猪构建，包括后端</p>
         </section>
 
         <section id="contact">
             <h2>联系方式</h2>
-            <p>通过以下方式与我联系或发送邮件至 <a href="mailto:example@example.com">example@example.com</a></p>
+            <p>vx号:zhuzhudashuaibi_2012</a></p>
         </section>
     </main>
 
