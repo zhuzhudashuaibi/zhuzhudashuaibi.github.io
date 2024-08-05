@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>datd</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f4f5;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: white;
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            padding: 10px 0;
+            font-size: 2.5rem;
+            text-align: center;
+            color: #369341;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav a {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            background: #4caf50;
+            border-radius: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #3e8e41;
+            transform: translateY(-2px);
+        }
+
+        main {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto;
+            gap: 30px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 20px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: justify;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        section:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+        }
+
+        section h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #369341;
+        }
+
+        section p {
+            font-size: 1rem;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>个人博客</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#posts">文章列表</a></li>
+                <li><a href="#projects">项目介绍</a></li>
+                <li><a href="#contact">联系方式</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>关于我</h2>
+            <p>这里是关于我的一些详细信息，展示我的经历和专业技能。</p>
+        </section>
+
+        <section id="posts">
+            <h2>文章列表</h2>
+            <p>分享我的知识、见解和学习经验。</p>
+        </section>
+
+        <section id="projects">
+            <h2>项目介绍</h2>
+            <p>展示我参与过的各种项目和成果。</p>
+        </section>
+
+        <section id="contact">
+            <h2>联系方式</h2>
+            <p>通过以下方式与我联系或发送邮件至 <a href="mailto:example@example.com">example@example.com</a></p>
+        </section>
+    </main>
+
+
+</body>
+</html>
