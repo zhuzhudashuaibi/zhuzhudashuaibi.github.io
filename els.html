@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>俄罗斯方块 - 拟物风格</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Lucida Console', monospace;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+  }
+  #tetris {
+    width: 300px;
+    height: 600px;
+    margin: 20px auto;
+    background-color: #222;
+    border: 4px solid #555;
+    box-shadow: inset 0 0 10px #000, 0 0 15px #444;
+    display: grid;
+    grid-template-rows: repeat(20, 30px);
+    grid-template-columns: repeat(10, 30px);
+  }
+  .block {
+    width: 30px;
+    height: 30px;
+    background-color: #444;
+    border: 1px solid #555;
+  }
+  .active {
+    background-color: #0f0;
+  }
+  #controls a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #555;
+    color: #fff;
+    border: 1px solid #666;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 1px 1px 2px #333;
+  }
+  #controls a:hover {
+    background-color: #666;
+  }
+  #score {
+    font-size: 1.2em;
+    color: #ff0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 这里应插入拟物纹理图片的base64编码或URL */
+    background-image: url('data:image/png;base64,...'); 
+    opacity: 0.2;
+    z-index: -1;
+  }
+</style>
+</head>
+<body>
+<div id="tetris"></div>
+<div id="controls">
+  <a href="#" onclick="event.preventDefault(); moveShape(-1, 0)">←</a>
+  <a href="#" onclick="event.preventDefault(); moveShape(1, 0)">→</a>
+  <a href="#" onclick="event.preventDefault(); rotateShape()">↻</a>
+  <a href="#" onclick="event.preventDefault(); moveDown()">↓</a>
+  <a href="#" onclick="event.preventDefault(); pauseGame()">Pause/Resume</a>
+  <a href="#" onclick="event.preventDefault(); resetGame()">Restart</a>
+</div>
+<p>Score: <span id="score">0</span></p>
+
+<script>
+// 以下是JavaScript代码部分
+(function() {
+  const gridWidth = 10;
+  const gridHeight = 20;
+  const gameArea = document.getElementById('tetris');
+  const grid = Array.from({ length: gridHeight }, () => new Array(gridWidth).fill(0));
+  const scoreElement = document.getElementById('score');
+  let currentShape = [];
+  let shapeX = 0;
+  let shapeY = 0;
+  let gameInterval;
+  let score = 0;
+  let gameIsRunning = true;
+
+  // 绘制网格
+  function drawGrid() {
+    grid.forEach((row, y) => {
+      row.forEach((cell, x) => {
+        const block = document.createElement('div');
+        block.classList.add('block', cell ? 'active' : '');
+        block.style.gridColumn = x + 1;
+        block.style.gridRow = y + 1;
+        gameArea.appendChild(block);
+      });
+    });
+  }
+
+  // 移动形状
+  function moveShape(dx, dy) {
+    if (!currentShape.some((row, y) => {
+      return row.some((cell, x) => {
+        return cell && collide(y + dy, x + dx);
+      });
+    })) {
+      shapeX += dx;
+      shapeY += dy;
+      drawShape();
+    }
+  }
+
+  // 旋转形状
+  function rotateShape() {
+    // 旋转逻辑
+  }
+
+  // 向下移动
+  function moveDown() {
+    // 向下移动逻辑
+  }
+
+  // 冻结形状
+  function freezeShape() {
+    // 冻结形状逻辑
+  }
+
+  // 清除行
+  function clearRows() {
+    // 清除行逻辑
+  }
+
+  // 碰撞检测
+  function collide(y, x) {
+    return y < 0 || y >= gridHeight || x < 0 || x >= gridWidth || grid[y][x];
+  }
+
+  // 旋转矩阵
+  function rotateMatrix(matrix) {
+    return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex] || 0).reverse());
+  }
+
+  // 生成新形状
+  function spawnNewShape() {
+    // 生成新形状逻辑
+  }
+
+  // 绘制形状
+  function drawShape() {
+    // 绘制形状逻辑
+  }
+
+  // 检查游戏是否结束
+  function checkGameOver() {
+    // 检查游戏是否结束逻辑
+  }
+
+  // 暂停/恢复游戏
+  function pauseGame() {
+    // 暂停/恢复游戏逻辑
+  }
+
+  // 重置游戏
+  function resetGame() {
+    // 重置游戏逻辑
+  }
+
+  // 初始化游戏
+  function initGame() {
+    drawGrid();
+    resetGame();
+    gameInterval = setInterval(() => {
+      if (!gameIsRunning) return;
+      moveDown();
+    }, 1000);
+  }
+
+  // 绑定按键事件
+  document.addEventListener('keydown', (e) => {
+    switch(e.key) {
+      case 'ArrowLeft':
+        moveShape(-1, 0);
+        break;
+      case 'ArrowRight':
+        moveShape(1, 0);
+        break;
+      case 'ArrowUp':
+        rotateShape();
+        break;
+      case 'ArrowDown':
+        moveDown();
+        break;
+      case ' ':
+        while (!currentShape.some((row, y) => {
+          return row.some((cell, x) => collide(y + 1, x));
+        })) {
+          shapeY++;
+        }
+        freezeShape();
+        break;
+    }
+  });
+
+  // 开始游戏
+  window.onload = initGame;
+})();
+</script>
+</body>
+</html>
